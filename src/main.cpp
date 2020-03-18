@@ -18,7 +18,7 @@ int main(int argc, char **argv)
     return 1;
   }
 
-  system("clear");
+  //system("clear");
 
   BazaTestu BazaT = { nullptr, 0, 0 };
 
@@ -40,14 +40,25 @@ int main(int argc, char **argv)
   while (PobierzNastpnePytanie(&BazaT,&WyrZ_PytanieTestowe)) {
     cout << endl;
     cout << " Oblicz nastepujace dzialanie: ";
-    WyswietlWyrarzenie(WyrZ_PytanieTestowe);
+    cout << WyrZ_PytanieTestowe;
     cout << '.' << endl;
 
     for(int i=1;i<=3;i++)
     {
-      if(!PobierzOdpowiedz(Odpowiedz))
+      cin >> Odpowiedz;
+
+      if (!cin.good()) // czy strumien niedobry?
+      {
+        cin.clear(); // naprawiamy strumien
+        cin.ignore(10000, '\n');
         cout << "Bledny format danych. Proba " << i << " na 3"<<  endl;
-      else break;
+      }
+      else
+      {
+        cin.clear(); // naprawiamy strumien
+        cin.ignore(10000, '\n');
+        break;
+      }
     }//for
 
     Punktacja(stat, Odpowiedz, WyrZ_PytanieTestowe);

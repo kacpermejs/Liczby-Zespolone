@@ -114,47 +114,7 @@ bool PobierzNastpnePytanie( BazaTestu  *wskBazaTestu, WyrazenieZesp *wskWyrazeni
   ++wskBazaTestu->IndeksPytania;
   return true;
 }
-/*!
- * Funkcja pobiera i sprawdza poprawnosc formatu odpowiedzi uzyskanej od uzytkownika
- * Parametry:
- *       L - referencja do LZespolona
- *
- * Warunki wstepne:
- *      - Brak
- *
- * Zwraca:
- *       true - gdy operacja sie powiedzie (uzytkownik wprowadzi liczbe
- *              zespolona w postaci (a+bi)
- *       false - w przypadku przeciwnym.
- */
-bool PobierzOdpowiedz(LZespolona &L)
-{
 
-  char znak; //zmienna do przechowywania znaków "(, i, )" z określonego formatu liczby zespolonej
-
-  cin >> znak;    //sprawdzanie pierwszego nawiasu
-  if(znak == '(') //******************************
-  {
-    cin >> L.re >>L.im; //sprawdzanie liczb
-    if(cin.good())      //*****************
-    {
-      cin >> znak;    //sprawdzanie "i"
-      if(znak == 'i') //***************
-      {
-        cin >> znak;    //sprawdzanie zamykajacego nawiasu
-        if(znak == ')') //********************************
-        {
-          cin.clear();
-          cin.ignore(10000, '\n');
-          return true;
-        }
-      }
-    }
-  }
-  cin.clear();
-  cin.ignore(10000, '\n');
-  return false;
-}
 /*!
  * Funkcja porownuje liczbe zespolona z wynikiem wprowadzonego wyrazenia.
  * Parametry:
@@ -243,9 +203,10 @@ void Punktacja(Statystyka &stat, LZespolona Odpowiedz, WyrazenieZesp Wynik)
     DodajDobra(stat);
   else
   {
+    LZespolona pop=Oblicz(Wynik);
     cout << endl;
     cout << "Zla odpowiedz, poprawny wynik to:";
-    WyswietlZespolona(Oblicz(Wynik));
+    cout << pop;
     cout << endl;
   }
 }

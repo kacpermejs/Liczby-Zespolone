@@ -15,11 +15,6 @@ LZespolona utworz(int rzeczywista, int urojona)
   return nowa;
 }
 
-void WyswietlZespolona(LZespolona Z)
-{
-  std::cout<<'('<< Z.re << std::showpos << Z.im << std::noshowpos << "i)";
-}
-
 /*!
  * Realizuje dodanie dwoch liczb zespolonych.
  * Argumenty:
@@ -144,4 +139,35 @@ bool operator != (LZespolona Skl1, LZespolona Skl2)
     return true;
   else
     return false;
+}
+/*!
+ * Funkcja pobiera i sprawdza poprawnosc formatu odpowiedzi uzyskanej od uzytkownika
+ * Parametry:
+ *       Skl - referencja do LZespolona
+ *       strm - strumien wejsciowy danych
+ *
+ * Warunki wstepne:
+ *      - Brak
+ *
+ */
+
+std::istream & operator >> (std::istream & strm, LZespolona & Skl)
+{
+  char znak;
+  strm>>znak;
+  if (znak != '(')
+    strm.setstate(std::ios::failbit);
+  strm>>Skl.re>>Skl.im>>znak;
+  if (znak != 'i')
+    strm.setstate(std::ios::failbit);
+  strm>>znak;
+  if (znak != ')')
+    strm.setstate(std::ios::failbit);
+  return strm;
+}
+
+std::ostream & operator << (std::ostream & strm, LZespolona & Skl)
+{
+  strm << '(' << Skl.re << std::showpos << Skl.im << std::noshowpos << "i)";
+  return strm;
 }

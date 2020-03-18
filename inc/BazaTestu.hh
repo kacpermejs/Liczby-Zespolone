@@ -31,7 +31,6 @@ bool PobierzNastpnePytanie( BazaTestu  *wskBazaTestu,  WyrazenieZesp *wskWyr );
  * Czesc odpowiedzialna za sprawdzanie poprawnosci odpowiedzi
  * i statystyke.
 */
-bool PobierzOdpowiedz(LZespolona &L);
 
 bool SprawdzPoprawnosc(LZespolona Odpowiedz, WyrazenieZesp Wynik);
 

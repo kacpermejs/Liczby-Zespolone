@@ -1,6 +1,7 @@
 #include "WyrazenieZesp.hh"
 
-void WyswietlWyrarzenie(WyrazenieZesp  WyrZ)
+
+/*void WyswietlWyrarzenie(WyrazenieZesp  WyrZ)
 {
   WyswietlZespolona(WyrZ.Arg1);
 
@@ -36,6 +37,83 @@ void WyswietlWyrarzenie(WyrazenieZesp  WyrZ)
 
   WyswietlZespolona(WyrZ.Arg2);
 }
+*/
+
+std::istream & operator >> (std::istream & strm,WyrazenieZesp & WZ)
+{
+  strm >> WZ.Arg1 >> WZ.Op >> WZ.Arg2;
+  return strm;
+}
+
+std::istream & operator >> (std::istream & strm,Operator & Op)
+{
+  char znak;
+  strm >> znak;
+  switch(znak)
+  {
+    case '+':
+    {
+    Op = Op_Dodaj;
+    break;
+    }
+
+    case '-':
+    {
+    Op = Op_Odejmij;
+    break;
+    }
+
+    case '*':
+    {
+    Op = Op_Mnoz;
+    break;
+    }
+
+    case '/':
+    {
+    Op = Op_Dziel;
+    break;
+    }
+  }
+  return strm;
+}
+
+std::ostream & operator << (std::ostream & strm, WyrazenieZesp & WZ)
+{
+  strm << WZ.Arg1 << WZ.Op << WZ.Arg2;
+  return strm;
+}
+
+std::ostream & operator << (std::ostream & strm,Operator & Op)
+{
+  switch(Op)
+  {
+    case Op_Dodaj:
+    {
+    strm << '+';
+    break;
+    }
+
+    case Op_Odejmij:
+    {
+    strm << '-';
+    break;
+    }
+
+    case Op_Mnoz:
+    {
+    strm << '*';
+    break;
+    }
+
+    case Op_Dziel:
+    {
+    strm << '/';
+    break;
+    }
+  }
+  return strm;
+}
 
 LZespolona Oblicz(WyrazenieZesp  WyrZ)
 {
@@ -66,9 +144,6 @@ LZespolona Oblicz(WyrazenieZesp  WyrZ)
     Wynik=WyrZ.Arg1/WyrZ.Arg2;
     break;
     }
-    default:
-    std::cout << "nie zdefiniowano dzialania" <<std::endl;
-    break;
   }
   return Wynik;
 }
