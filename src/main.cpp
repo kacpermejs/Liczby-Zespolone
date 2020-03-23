@@ -1,5 +1,6 @@
 #include <iostream>
 #include "BazaTestu.hh"
+#include "Statystyka.hh"
 #include <cmath>
 #include <cstdlib>
 
@@ -68,7 +69,7 @@ int main(int argc, char **argv)
 
   }//while
 
-  WyswietlPodsumowanie(stat);
+  cout << stat;
 
   cout << endl;
   cout << " Koniec testu" << endl;

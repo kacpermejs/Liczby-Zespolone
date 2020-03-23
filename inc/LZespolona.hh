@@ -52,6 +52,6 @@ bool operator != (LZespolona Skl1, LZespolona Skl2);
 
 std::istream & operator >> (std::istream & strm, LZespolona & Skl);
 
-std::ostream & operator << (std::ostream & strm, LZespolona & Skl);
+std::ostream & operator << (std::ostream & strm, const LZespolona & Skl);
 
 #endif

@@ -1,4 +1,5 @@
 #include "LZespolona.hh"
+#include "cassert"
 
 
 /*!
@@ -118,7 +119,7 @@ LZespolona operator * (LZespolona zesp, double rzeczywista)
 LZespolona operator / (LZespolona zesp, double rzeczywista)
 {
   LZespolona  Wynik;
-
+  assert(rzeczywista!=0);
   Wynik.re = zesp.re/rzeczywista;
   Wynik.im = zesp.im/rzeczywista;
 
@@ -166,8 +167,10 @@ std::istream & operator >> (std::istream & strm, LZespolona & Skl)
   return strm;
 }
 
-std::ostream & operator << (std::ostream & strm, LZespolona & Skl)
+std::ostream & operator << (std::ostream & strm, const LZespolona & Skl)
 {
   strm << '(' << Skl.re << std::showpos << Skl.im << std::noshowpos << "i)";
   return strm;
 }
+
+

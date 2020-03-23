@@ -1,51 +1,12 @@
 #include "WyrazenieZesp.hh"
 
-
-/*void WyswietlWyrarzenie(WyrazenieZesp  WyrZ)
-{
-  WyswietlZespolona(WyrZ.Arg1);
-
-  switch(WyrZ.Op)
-  {
-    case Op_Dodaj:
-    {
-    std::cout << '+';
-    break;
-    }
-
-    case Op_Odejmij:
-    {
-    std::cout << '-';
-    break;
-    }
-
-    case Op_Mnoz:
-    {
-    std::cout << '*';
-    break;
-    }
-
-    case Op_Dziel:
-    {
-    std::cout << '/';
-    break;
-    }
-    default:
-    std::cout << "nie zdefiniowano dzialania" <<std::endl;
-    break;
-  }
-
-  WyswietlZespolona(WyrZ.Arg2);
-}
-*/
-
-std::istream & operator >> (std::istream & strm,WyrazenieZesp & WZ)
+std::istream & operator >> (std::istream & strm, WyrazenieZesp & WZ)
 {
   strm >> WZ.Arg1 >> WZ.Op >> WZ.Arg2;
   return strm;
 }
 
-std::istream & operator >> (std::istream & strm,Operator & Op)
+std::istream & operator >> (std::istream & strm, Operator & Op)
 {
   char znak;
   strm >> znak;
@@ -78,13 +39,13 @@ std::istream & operator >> (std::istream & strm,Operator & Op)
   return strm;
 }
 
-std::ostream & operator << (std::ostream & strm, WyrazenieZesp & WZ)
+std::ostream & operator << (std::ostream & strm, const WyrazenieZesp & WZ)
 {
   strm << WZ.Arg1 << WZ.Op << WZ.Arg2;
   return strm;
 }
 
-std::ostream & operator << (std::ostream & strm,Operator & Op)
+std::ostream & operator << (std::ostream & strm, const Operator & Op)
 {
   switch(Op)
   {
