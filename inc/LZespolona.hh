@@ -2,6 +2,7 @@
 #define LZESPOLONA_HH
 
 #include <iostream>
+#include <cassert>
 #include <cmath>
 
 /*!

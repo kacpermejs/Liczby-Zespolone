@@ -1,5 +1,5 @@
 #include "LZespolona.hh"
-#include "cassert"
+
 
 
 /*!
