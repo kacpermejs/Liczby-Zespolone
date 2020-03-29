@@ -1,12 +1,12 @@
 #include "WyrazenieZesp.hh"
 
-std::istream & operator >> (std::istream & strm, WyrazenieZesp & WZ)
+std::istream & operator >> (std::istream & strm, WyrazenieZesp & WZ) //wczytywanie wyrazenia ze strumienia
 {
   strm >> WZ.Arg1 >> WZ.Op >> WZ.Arg2;
   return strm;
 }
 
-std::istream & operator >> (std::istream & strm, Operator & Op)
+std::istream & operator >> (std::istream & strm, Operator & Op) //wczytywanie operatora ze strumienia
 {
   char znak;
   strm >> znak;
@@ -35,17 +35,22 @@ std::istream & operator >> (std::istream & strm, Operator & Op)
     Op = Op_Dziel;
     break;
     }
+    default:
+    {
+    strm.setstate(std::ios::failbit);
+    break;
+    }
   }
   return strm;
 }
 
-std::ostream & operator << (std::ostream & strm, const WyrazenieZesp & WZ)
+std::ostream & operator << (std::ostream & strm, const WyrazenieZesp & WZ) //wysylanie wyrazenia do strumienia
 {
   strm << WZ.Arg1 << WZ.Op << WZ.Arg2;
   return strm;
 }
 
-std::ostream & operator << (std::ostream & strm, const Operator & Op)
+std::ostream & operator << (std::ostream & strm, const Operator & Op) //wysylanie operatora do strumienia
 {
   switch(Op)
   {

@@ -5,8 +5,6 @@
 #include "BazaTestu.hh"
 
 
-using namespace std;
-
 /*!
  * Tablica, ktora jest widoczna tylko w tym module.
  * Zawiera ona tresc latwego testu.
@@ -53,9 +51,42 @@ void UstawTest( BazaTestu *wskBazaTestu, WyrazenieZesp *wskTabTestu, unsigned in
   wskBazaTestu->IloscPytan = IloscPytan;
   wskBazaTestu->IndeksPytania = 0;
 }
+/*
+bool UstawPilkTestu(const char *sNazwaTestu, WyrazenieZesp &wskTabTestu)
+{
+  std::fstream plik;
+  std::string linia;
+  int iloscLinii;
+  std::cout << "otwieram: " << sNazwaTestu << std::endl;
+
+  plik.open(sNazwaTestu, std::ios::in);
+  if(!plik.good())
+  {
+    std::cerr << "Nie udalo sie otworzyc pliku!" << std::endl;
+    return false;
+  }
+  else
+  {
+    while(!plik.eof())
+    {
+      std::getline(plik, linia);
+      iloscLinii++;
+    }
+    plik.close();
+    std::cout <<iloscLinii;
+    std::cout << "tworze " << iloscLinii;
+    //wskTabTestu = new WyrazenieZesp[iloscLinii];
 
 
+    for(int i=0; i<iloscLinii; i++)
+    {
+      std::cout << wskTabTestu+i;
+    }
 
+    return true;
+  }
+}
+*/
 
 /*!
  * Inicjalizuje test kojarzac zmienna dostepna poprzez wskaznik wskBazaTestu
@@ -78,6 +109,12 @@ void UstawTest( BazaTestu *wskBazaTestu, WyrazenieZesp *wskTabTestu, unsigned in
  */
 bool InicjalizujTest( BazaTestu  *wskBazaTestu, const char *sNazwaTestu )
 {
+  WyrazenieZesp wskTab[] =
+  { {{2,1}, Op_Dodaj, {1,2}},
+    {{1,0}, Op_Odejmij, {0,1}},
+    {{3,0}, Op_Mnoz, {0,3}},
+    {{4,8}, Op_Dziel, {0,0}},
+  };
   if (!strcmp(sNazwaTestu,"latwy")) {
     UstawTest(wskBazaTestu,TestLatwy,sizeof(TestLatwy)/sizeof(WyrazenieZesp));
     return true;
@@ -89,8 +126,13 @@ bool InicjalizujTest( BazaTestu  *wskBazaTestu, const char *sNazwaTestu )
     UstawTest(wskBazaTestu,TestTrudny,sizeof(TestTrudny)/sizeof(WyrazenieZesp));
     return true;
   }
+  /*else if(UstawPilkTestu(sNazwaTestu, *wskTab))
+  {
+    UstawTest(wskBazaTestu,wskTab,sizeof(TestTrudny)/sizeof(WyrazenieZesp));
+    return true;
+  }*/
 
-  cerr << "Otwarcie testu '" << sNazwaTestu << "' nie powiodlo sie." << endl;
+  std::cerr << "Otwarcie testu '" << sNazwaTestu << "' nie powiodlo sie." << std::endl;
   return false;
 }
 
